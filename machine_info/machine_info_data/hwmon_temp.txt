@@ -1,0 +1,158 @@
+/sys/class/hwmon/hwmon0/name
+i350bb
+/sys/class/hwmon/hwmon1/name
+coretemp
+/sys/class/hwmon/hwmon2/name
+coretemp
+/sys/class/hwmon/hwmon3/name
+coretemp
+/sys/class/hwmon/hwmon4/name
+coretemp
+/sys/class/hwmon/hwmon0/temp1_label
+loc1
+/sys/class/hwmon/hwmon1/temp1_label
+Physical id 0
+/sys/class/hwmon/hwmon1/temp2_label
+Core 0
+/sys/class/hwmon/hwmon1/temp3_label
+Core 1
+/sys/class/hwmon/hwmon1/temp4_label
+Core 2
+/sys/class/hwmon/hwmon1/temp5_label
+Core 3
+/sys/class/hwmon/hwmon1/temp6_label
+Core 4
+/sys/class/hwmon/hwmon1/temp7_label
+Core 5
+/sys/class/hwmon/hwmon1/temp8_label
+Core 6
+/sys/class/hwmon/hwmon1/temp9_label
+Core 7
+/sys/class/hwmon/hwmon2/temp1_label
+Physical id 1
+/sys/class/hwmon/hwmon2/temp2_label
+Core 0
+/sys/class/hwmon/hwmon2/temp3_label
+Core 1
+/sys/class/hwmon/hwmon2/temp4_label
+Core 2
+/sys/class/hwmon/hwmon2/temp5_label
+Core 3
+/sys/class/hwmon/hwmon2/temp6_label
+Core 4
+/sys/class/hwmon/hwmon2/temp7_label
+Core 5
+/sys/class/hwmon/hwmon2/temp8_label
+Core 6
+/sys/class/hwmon/hwmon2/temp9_label
+Core 7
+/sys/class/hwmon/hwmon3/temp1_label
+Physical id 2
+/sys/class/hwmon/hwmon3/temp2_label
+Core 0
+/sys/class/hwmon/hwmon3/temp3_label
+Core 1
+/sys/class/hwmon/hwmon3/temp4_label
+Core 2
+/sys/class/hwmon/hwmon3/temp5_label
+Core 3
+/sys/class/hwmon/hwmon3/temp6_label
+Core 4
+/sys/class/hwmon/hwmon3/temp7_label
+Core 5
+/sys/class/hwmon/hwmon3/temp8_label
+Core 6
+/sys/class/hwmon/hwmon3/temp9_label
+Core 7
+/sys/class/hwmon/hwmon4/temp1_label
+Physical id 3
+/sys/class/hwmon/hwmon4/temp2_label
+Core 0
+/sys/class/hwmon/hwmon4/temp3_label
+Core 1
+/sys/class/hwmon/hwmon4/temp4_label
+Core 2
+/sys/class/hwmon/hwmon4/temp5_label
+Core 3
+/sys/class/hwmon/hwmon4/temp6_label
+Core 4
+/sys/class/hwmon/hwmon4/temp7_label
+Core 5
+/sys/class/hwmon/hwmon4/temp8_label
+Core 6
+/sys/class/hwmon/hwmon4/temp9_label
+Core 7
+/sys/class/hwmon/hwmon0/temp1_input
+52000
+/sys/class/hwmon/hwmon1/temp1_input
+44000
+/sys/class/hwmon/hwmon1/temp2_input
+40000
+/sys/class/hwmon/hwmon1/temp3_input
+38000
+/sys/class/hwmon/hwmon1/temp4_input
+43000
+/sys/class/hwmon/hwmon1/temp5_input
+42000
+/sys/class/hwmon/hwmon1/temp6_input
+38000
+/sys/class/hwmon/hwmon1/temp7_input
+41000
+/sys/class/hwmon/hwmon1/temp8_input
+41000
+/sys/class/hwmon/hwmon1/temp9_input
+41000
+/sys/class/hwmon/hwmon2/temp1_input
+45000
+/sys/class/hwmon/hwmon2/temp2_input
+36000
+/sys/class/hwmon/hwmon2/temp3_input
+33000
+/sys/class/hwmon/hwmon2/temp4_input
+42000
+/sys/class/hwmon/hwmon2/temp5_input
+36000
+/sys/class/hwmon/hwmon2/temp6_input
+36000
+/sys/class/hwmon/hwmon2/temp7_input
+37000
+/sys/class/hwmon/hwmon2/temp8_input
+34000
+/sys/class/hwmon/hwmon2/temp9_input
+46000
+/sys/class/hwmon/hwmon3/temp1_input
+43000
+/sys/class/hwmon/hwmon3/temp2_input
+38000
+/sys/class/hwmon/hwmon3/temp3_input
+38000
+/sys/class/hwmon/hwmon3/temp4_input
+38000
+/sys/class/hwmon/hwmon3/temp5_input
+39000
+/sys/class/hwmon/hwmon3/temp6_input
+42000
+/sys/class/hwmon/hwmon3/temp7_input
+42000
+/sys/class/hwmon/hwmon3/temp8_input
+43000
+/sys/class/hwmon/hwmon3/temp9_input
+43000
+/sys/class/hwmon/hwmon4/temp1_input
+48000
+/sys/class/hwmon/hwmon4/temp2_input
+43000
+/sys/class/hwmon/hwmon4/temp3_input
+44000
+/sys/class/hwmon/hwmon4/temp4_input
+40000
+/sys/class/hwmon/hwmon4/temp5_input
+41000
+/sys/class/hwmon/hwmon4/temp6_input
+47000
+/sys/class/hwmon/hwmon4/temp7_input
+43000
+/sys/class/hwmon/hwmon4/temp8_input
+41000
+/sys/class/hwmon/hwmon4/temp9_input
+44000

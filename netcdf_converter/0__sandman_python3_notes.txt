@@ -1,0 +1,23 @@
+# All this is needed to be able to use python3 on sandman (to convert the nc files)
+# Missing compatible glibc (>=2.25) caused problem
+# Installed the following (missed GNU awk too)
+
+# download gawk-4.2.0 -> https://ftp.gnu.org/gnu/gawk/
+# download glibc-2.27 -> 
+
+cd gawk-4.2.0
+./configure --prefix=/various/pmpakos/gawk-4.2.0
+make -j8
+make install
+
+export PATH=$PATH:/various/pmpakos/gawk-4.2.0
+cd glibc-2.27
+mkdir build
+cd build
+../configure --prefix=/various/pmpakos/glibc-2.27/build
+make -j8
+make install
+
+export PATH=$PATH:/various/pmpakos/glibc-2.27/build
+
+# export PATH=$PATH:/various/pmpakos/gawk-4.2.0:/various/pmpakos/glibc-2.27/build

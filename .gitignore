@@ -50,3 +50,20 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Python/JuPyter shit
+.ipynb*
+*__pycache__*/
+
+
+# Dataset files
+netcdf_converter/*.nc
+
+# datasets
+datasets/*.cluster_centres
+datasets/*.membership
+datasets/*.bin
+
+
+# candidate datasets
+candidate_datasets/*.tar.gz

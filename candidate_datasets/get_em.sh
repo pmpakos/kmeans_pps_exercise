@@ -1,0 +1,15 @@
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/APR.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/Bayesian.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/birch.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/ECLAT.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/ETI.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/GeneNet.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/HOP.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/kmeans.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/PLSA.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/rsearch.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/ScalParC.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/semphy.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/SNP.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/SVM-RFE.tar.gz
+wget http://cucis.ece.northwestern.edu/projects/DMS/DATASETS/utility_mine.tar.gz

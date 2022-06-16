@@ -1,0 +1,9 @@
+
+---------- /various/common_tools/environment-modules/Modules/versions ----------
+3.2.10
+
+----- /various/common_tools/environment-modules/Modules/3.2.10/modulefiles -----
+cilk-mit      dot           module-info   openmpi/1.8.3
+cilk-plus     gcc/4.8.2     modules       tbbz
+cuda/4.0      gcc/6.4.0     null          tbbz_various
+cuda/4.2      module-git    openmp        use.own
