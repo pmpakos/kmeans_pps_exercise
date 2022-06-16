@@ -1,6 +1,8 @@
 # kmeans_pps_exercise
 
-___ original version [here](http://users.ece.northwestern.edu/~wkliao/Kmeans/index.html) ___
+_original version [here](http://users.ece.northwestern.edu/~wkliao/Kmeans/index.html)_
+
+_panastas version [here](https://github.com/p-anastas/k-means_HiPeac)_
 
 ### Compile
 Run `make` and build `seq_main`, `omp_main`. Only openmp version is important for now (`mpi` will be checked later).
