@@ -1,17 +1,3 @@
-#  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-#    File:         Makefile                                                  */
-#    Description:  Makefile for programs running a simple k-means clustering */
-#                  algorithm                                                 */
-#                                                                            */
-#    Author:  Wei-keng Liao                                                  */
-#             ECE Department Northwestern University                         */
-#             email: wkliao@ece.northwestern.edu                             */
-#                                                                            */
-#    Copyright (C) 2005, Northwestern University                             */
-#    See COPYRIGHT notice in top-level directory.                            */
-#                                                                            */
-#  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 .KEEP_STATE:
 
 all: seq omp
@@ -38,7 +24,6 @@ CFLAGS      = $(OPTFLAGS) $(DFLAGS) $(INCFLAGS)
 # please check the compile manual for the openmp flag
 # Here, I am using gcc and the flag is -fopenmp
 # If icc is used, it is -opnemp
-#
 OMPFLAGS    = -fopenmp
 
 H_FILES     = kmeans.h
@@ -47,7 +32,7 @@ COMM_SRC = file_io.c util.c
 
 #------   OpenMP version -----------------------------------------
 OMP_SRC     = omp_main.c \
-	      omp_kmeans.c
+			  omp_kmeans.c
 
 OMP_OBJ     = $(OMP_SRC:%.c=%.o) $(COMM_SRC:%.c=%.o)
 
@@ -68,7 +53,7 @@ omp_main: $(OMP_OBJ)
 #------   sequential version -----------------------------------------
 SEQ_SRC     = seq_main.c   \
               seq_kmeans.c \
-	      wtime.c
+              wtime.c
 
 SEQ_OBJ     = $(SEQ_SRC:%.c=%.o) $(COMM_SRC:%.c=%.o)
 
@@ -87,31 +72,13 @@ seq: seq_main
 seq_main: $(SEQ_OBJ) $(H_FILES)
 	$(CC) $(LDFLAGS) -o $@ $(SEQ_OBJ) $(LIBS)
 
-IMAGE_FILES =   color100.txt   color17695.bin   color17695.nc \
-                 edge100.txt    edge17695.bin    edge17695.nc \
-              texture100.txt texture17695.bin texture17695.nc
-
-INPUTS = $(IMAGE_FILES:%=Image_data/%)
-
-PACKING_LIST = $(COMM_SRC) $(SEQ_SRC) $(OMP_SRC) $(H_FILES) \
-               Makefile README COPYRIGHT sample.output bin2nc.c
-
-dist:
-	dist_dir=parallel-kmeans \
-	&& rm -rf $$dist_dir $$dist_dir.tar.gz\
-	&& mkdir -p $$dist_dir/Image_data \
-	&& cp $(PACKING_LIST) $$dist_dir \
-	&& cp $(INPUTS) $$dist_dir/Image_data \
-	&& tar -cf - $$dist_dir | gzip > $$dist_dir.tar.gz \
-	&& rm -rf $$dist_dir
 
 clean:
 	rm -rf *.o omp_main seq_main \
-		bin2nc core* .make.state              \
-		*.cluster_centres *.membership \
-		*.cluster_centres.nc *.membership.nc \
+		bin2nc core* .make.state \
 		Image_data/*.cluster_centres Image_data/*.membership \
-		Image_data/*.cluster_centres.nc Image_data/*.membership.nc
+		Image_data/*.cluster_centres.nc Image_data/*.membership.nc \
+		artificial_datasets/*.cluster_centres artificial_datasets/*.membership
 
 check: all
 	# sequential K-means ---------------------------------------------------

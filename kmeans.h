@@ -16,8 +16,8 @@
 
 #include <assert.h>
 
-double omp_kmeans(int, float**, int, int, int, float, int*, float**);
-int seq_kmeans(float**, int, int, int, float, int*, float**);
+double omp_kmeans(int, float**, int, int, int, float, int*, float**, int);
+int seq_kmeans(float**, int, int, int, float, int*, float**, int);
 
 float** file_read(int, char*, int*, int*);
 int     file_write(char*, int, int, int, float**, int*, int);

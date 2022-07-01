@@ -64,6 +64,10 @@ datasets/*.cluster_centres
 datasets/*.membership
 datasets/*.bin
 
+# artificial datasets
+artificial_datasets/*.cluster_centres
+artificial_datasets/*.membership
+artificial_datasets/*.txt
 
 # candidate datasets
 candidate_datasets/*.tar.gz
