@@ -99,7 +99,7 @@ bench()
 	for c in $centers; do
 		if [ "$prog" = "sequential" ]; then
 			# sequential
-			./seq_main -i "${prog_args[@]}" -n $c -o
+			./seq_main -i "${prog_args[@]}" -c $c -o
 			mv "${prog_args[@]}".cluster_centres "${prog_args[@]}".n$c.sequential.cluster_centres
 			mv "${prog_args[@]}".membership "${prog_args[@]}".n$c.sequential.membership
 		
@@ -110,14 +110,14 @@ bench()
 
 				if [ "$prog" = "omp(atomic)" ]; then
 					# omp_atomic
-					./omp_main -a -i "${prog_args[@]}" -p $t -n $c -o
+					./omp_main -a -i "${prog_args[@]}" -p $t -c $c -o
 					mv "${prog_args[@]}".cluster_centres "${prog_args[@]}".n$c.omp_atomic_t$t.cluster_centres
 					mv "${prog_args[@]}".membership "${prog_args[@]}".n$c.omp_atomic_t$t.membership
 				fi
 
 				if [ "$prog" = "omp(array-reduction)" ]; then
 					# omp_array_reduction
-					./omp_main -i "${prog_args[@]}" -p $t -n $c -o
+					./omp_main -i "${prog_args[@]}" -p $t -c $c -o
 					mv "${prog_args[@]}".cluster_centres "${prog_args[@]}".n$c.omp_array_reduction_t$t.cluster_centres
 					mv "${prog_args[@]}".membership "${prog_args[@]}".n$c.omp_array_reduction_t$t.membership
 				fi

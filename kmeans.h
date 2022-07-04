@@ -19,10 +19,12 @@
 double omp_kmeans(int, float**, int, int, int, float, int*, float**, int);
 int seq_kmeans(float**, int, int, int, float, int*, float**, int);
 
-float** file_read(int, char*, int*, int*);
+// float** file_read(int, char*, int*, int*);
+float** file_read(char*, int*, int*);
 int     file_write(char*, int, int, int, float**, int*, int);
 
 int read_n_objects(int, char*, int, int, float**);
+float** dataset_generation(int, int);
 
 int check_repeated_clusters(int, int, float**);
 

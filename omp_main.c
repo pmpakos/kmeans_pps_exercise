@@ -22,15 +22,12 @@ static void usage(char *argv0, float threshold) {
 	char *help =
 		"Usage: %s [switches] -i filename -n num_clusters\n"
 		"       -i filename    : file containing data to be clustered\n"
-		"       -c centers     : file containing initial centers. default: filename\n"
-		"       -b             : input file is in binary format (default no)\n"
-		"       -n num_clusters: number of clusters (K must > 1)\n"
+		"       -c num_clusters: number of clusters (K must > 1)\n"
+		"       -s size        : size of examined dataset\n"
+		"       -n num_coords  : number of coordinates (must be > num_clusters)\n"
 		"       -t threshold   : threshold value (default %.4f)\n"
-		"       -p nproc       : number of threads (default system allocated)\n"
 		"       -a             : perform atomic OpenMP pragma (default no)\n"
 		"       -o             : output timing results (default no)\n"
-		"       -c var_name    : using PnetCDF for file input and output and var_name\n"
-		"                      : is variable name in the netCDF file to be clustered\n"
 		"       -q             : quiet mode\n"
 		"       -d             : enable debug mode\n"
 		"       -h             : print this help information\n";
@@ -49,11 +46,11 @@ int main(int argc, char **argv) {
 
 	int     numClusters, numCoords, numObjs;
 	int    *membership;    /* [numObjs] */
-	char   *filename, *center_filename;
+	char   *filename;
 	char   *var_name;
 	float **objects;       /* [numObjs][numCoords] data objects */
 	float **clusters;      /* [numClusters][numCoords] cluster center */
-	float   threshold;
+	float   dataset_size, threshold;
 	double  timing, io_timing, io_timing_read, io_timing_write, clustering_timing, timer;
 
 	#ifdef _PNETCDF_BUILT
@@ -73,49 +70,45 @@ int main(int argc, char **argv) {
 	filename          = NULL;
 	do_pnetcdf        = 0;
 	var_name          = NULL;
-	center_filename   = NULL;
 
-	while ( (opt=getopt(argc,argv,"p:i:n:t:c:v:abdohq"))!= EOF) {
+	while ( (opt=getopt(argc,argv,"p:i:n:t:c:v:s:adoqh"))!= EOF) {
 		switch (opt) {
 			case 'i': filename=optarg;
 					  break;
-			case 'c': center_filename=optarg;
-					  break;
-			case 'b': isBinaryFile = 1;
+			case 'c': numClusters = atoi(optarg);
 					  break;
 			case 't': threshold=atof(optarg);
 					  break;
-			case 'n': numClusters = atoi(optarg);
+			case 's': dataset_size=atof(optarg);
+					  break;
+			case 'n': numCoords=atoi(optarg);
 					  break;
 			case 'p': nthreads = atoi(optarg);
 					  break;
 			case 'a': is_perform_atomic = 1;
 					  break;
+			case 'd': _debug = 1;
+					  break;
 			case 'o': is_output_timing = 1;
 					  break;
 			case 'q': verbose = 0;
-					  break;
-			case 'd': _debug = 1;
-					  break;
-			case 'v': do_pnetcdf = 1;
-					  var_name = optarg;
 					  break;
 			case 'h':
 			default: usage(argv[0], threshold);
 					  break;
 		}
 	}
-	if (center_filename == NULL)
-		center_filename = filename;
+	numObjs = (int) (dataset_size*1024*1024)/(numCoords*sizeof(float));
+	printf("dataset_size = %lf\tnumObjs = %d\tnumCoords = %d\n", dataset_size, numObjs, numCoords);
 
 	if (filename == 0 || numClusters <= 1) usage(argv[0], threshold);
 
-	#ifndef _PNETCDF_BUILT
-	if (do_pnetcdf) {
-		printf("Error: PnetCDF feature is not built\n");
-		exit(1);
-	}
-	#endif
+	// #ifndef _PNETCDF_BUILT
+	// if (do_pnetcdf) {
+	// 	printf("Error: PnetCDF feature is not built\n");
+	// 	exit(1);
+	// }
+	// #endif
 
 	/* set the no. threads if specified in command line, else use all
 	   threads allocated by run-time system */
@@ -127,13 +120,14 @@ int main(int argc, char **argv) {
 	}
 
 	/* read data points from file ------------------------------------------*/
-	#ifdef _PNETCDF_BUILT
-	if (do_pnetcdf)
-		objects = pnetcdf_read(filename, var_name, &numObjs, &numCoords, MPI_COMM_WORLD);
-	else
-	#endif
+	// #ifdef _PNETCDF_BUILT
+	// if (do_pnetcdf)
+	// 	objects = pnetcdf_read(filename, var_name, &numObjs, &numCoords, MPI_COMM_WORLD);
+	// else
+	// #endif
 	
-	objects = file_read(isBinaryFile, filename, &numObjs, &numCoords);
+	// objects = file_read(isBinaryFile, filename, &numObjs, &numCoords);
+	objects = dataset_generation(numObjs, numCoords);
 	if (objects == NULL) exit(1);
 
 	if (numObjs < numClusters) {
@@ -152,19 +146,11 @@ int main(int argc, char **argv) {
 	for (i=1; i<numClusters; i++)
 		clusters[i] = clusters[i-1] + numCoords;
 
-	/* read the first numClusters elements from file center_filename as the initial cluster centers*/
-	if (center_filename != filename) {
-		// printf("reading initial %d centers from file %s\n", numClusters, center_filename);
-		/* read the first numClusters data points from file */
-		read_n_objects(isBinaryFile, center_filename, numClusters, numCoords, clusters);
-	}
-	else {
-		// printf("selecting the first %d elements as initial centers\n", numClusters);
-		/* copy the first numClusters elements in feature[] */
-		for (i=0; i<numClusters; i++)
-			for (j=0; j<numCoords; j++)
-				clusters[i][j] = objects[i][j];
-	}
+	// printf("selecting the first %d elements as initial centers\n", numClusters);
+	/* copy the first numClusters elements in feature[] */
+	for (i=0; i<numClusters; i++)
+		for (j=0; j<numCoords; j++)
+			clusters[i][j] = objects[i][j];
 
 	/* check initial cluster centers for repeatition */
 	if (check_repeated_clusters(numClusters, numCoords, clusters) == 0) {
